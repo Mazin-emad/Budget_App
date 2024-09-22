@@ -1,0 +1,81 @@
+{
+  "transactions": [
+    {
+      "id": "8236",
+      "title": "g53",
+      "amount": "3",
+      "type": "expanse",
+      "category": "1",
+      "date": "0002-02-22"
+    },
+    {
+      "id": "1180"
+    },
+    {
+      "id": "4090",
+      "title": "g",
+      "amount": "5",
+      "type": "expanse",
+      "category": "2",
+      "date": "0055-05-05"
+    },
+    {
+      "id": "bbda",
+      "title": "g",
+      "amount": "5",
+      "type": "expanse",
+      "category": "2",
+      "date": "0055-05-05"
+    },
+    {
+      "id": "ad4e",
+      "title": "g",
+      "amount": "5",
+      "type": "expanse",
+      "category": "2",
+      "date": "0055-05-05"
+    },
+    {
+      "id": "cee0",
+      "title": "g",
+      "amount": "5",
+      "type": "expanse",
+      "category": "2",
+      "date": "0055-05-05"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Business"
+    },
+    {
+      "id": "2",
+      "name": "Monthly income"
+    },
+    {
+      "id": "3",
+      "name": "Investment"
+    },
+    {
+      "id": "4",
+      "name": "Home Needs"
+    },
+    {
+      "id": "5",
+      "name": "Bucket List"
+    },
+    {
+      "id": "6",
+      "name": "Savings"
+    },
+    {
+      "id": "7",
+      "name": "Freelance"
+    },
+    {
+      "id": "8",
+      "name": "Business"
+    }
+  ]
+}
