@@ -1,4 +1,4 @@
- Budget App (WIP)==> 
+ Budget App ==> (https://mazin-emad.github.io/Budget_App/)
  
 Welcome to the Budget App! This project is a work in progress and aims to help users manage their finances effectively. Although it's still under development and has a few bugs, it's a great start toward a simple and user-friendly budgeting solution.
 
