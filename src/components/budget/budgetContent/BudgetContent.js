@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from "react";
-import "./budgetContent.css";
+import "./budgetcontent.css";
 import { Tabs, Tab } from "components/ui";
 import Transactions from "./transactions/Transactions";
 import { categoryContext } from "services/context/budget/categoryContext";
