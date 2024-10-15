@@ -1,4 +1,3 @@
-
 import {
   createContext,
   useCallback,
@@ -74,7 +73,7 @@ export const TransactionsProvider = ({ children }) => {
   }, [fetchData]);
 
   const handelFilters = (filterData) => {
-    setFilters(filterData)
+    setFilters(filterData);
   };
   console.log(filters);
 
@@ -107,12 +106,21 @@ export const TransactionsProvider = ({ children }) => {
     const expanse = state.data
       .filter((item) => item.type === "expanse")
       .reduce((acc, item) => acc + +item.amount, 0);
-      const balance = income - expanse;
+    const balance = income - expanse;
     return { income, expanse, balance };
   }, [state.data]);
 
   return (
-    <transactionsContext.Provider value={{ ...state, totals ,handelFilters, handelDelete, fetchData,filterData }}>
+    <transactionsContext.Provider
+      value={{
+        ...state,
+        totals,
+        handelFilters,
+        handelDelete,
+        fetchData,
+        filterData,
+      }}
+    >
       {children}
     </transactionsContext.Provider>
   );
