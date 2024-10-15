@@ -5,7 +5,7 @@ import { categoryContext } from "services/context/budget/categoryContext";
 
 const TransContent = () => {
   const {
-    data: transactions,
+    filterData: transactions,
     loading,
     error,
   } = useContext(transactionsContext);

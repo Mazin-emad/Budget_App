@@ -1,8 +1,12 @@
+import { transactionsContext } from "services/context/budget/transactionsContext";
 import BudgetNumber from "./BudgetNumber";
 import "./Hero.css";
 import { Coins, Money, CreditCard } from "phosphor-react";
+import { useContext } from "react";
 
 const Hero = () => {
+  const { totals } = useContext(transactionsContext);
+  console.log(totals);
   return (
     <div className="hero_budget">
       <div className="hero_budget-bg">
@@ -10,13 +14,13 @@ const Hero = () => {
       </div>
       <div className="container">
         <div className="hero_budget-numbers">
-          <BudgetNumber money={500} title="total money">
+          <BudgetNumber money={totals.balance} title="total money">
             <Coins weight="duotone" />
           </BudgetNumber>
-          <BudgetNumber money={500} title="total income">
+          <BudgetNumber money={totals.income} title="total income">
             <Money weight="duotone" />
           </BudgetNumber>
-          <BudgetNumber money={500} title="total expanse">
+          <BudgetNumber money={totals.expanse} title="total expanse">
             <CreditCard weight="duotone" />
           </BudgetNumber>
         </div>

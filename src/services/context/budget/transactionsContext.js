@@ -1,7 +1,9 @@
+
 import {
   createContext,
   useCallback,
   useEffect,
+  useMemo,
   useReducer,
   useRef,
   useState,
@@ -37,8 +39,7 @@ export const TransactionsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(contextReducer, initialState);
 
   const [filters, setFilters] = useState({
-    date: false,
-    amount: false,
+    keys: null,
     category: null,
     type: null,
   });
@@ -72,27 +73,46 @@ export const TransactionsProvider = ({ children }) => {
     }
   }, [fetchData]);
 
-  const handeleFilters = (filterData) => {
-    const fData = { ...filters };
-
-    Object.keys(filterData).forEach((key) => {
-      if (key === "keys") {
-        if (!filterData.keys) {
-          fData.date = false;
-          fData.amount = false;
-        } else if (filterData.keys === "amount") {
-          fData.amount = true;
-        } else if (filterData.keys === "type") {
-          fData.type = true;
-        }
-      } else if (key === "type") {
-        fData.type = filterData.type ? filterData.type : null;
-      }
-    });
+  const handelFilters = (filterData) => {
+    setFilters(filterData)
   };
+  console.log(filters);
+
+  const filterData = useMemo(() => {
+    let tempData = [...state.data];
+    if (filters.keys) {
+      tempData = tempData.sort((a, b) => {
+        if (filters.keys === "date") {
+          return new Date(b.date) - new Date(a.date);
+        }
+        if (filters.keys === "amount") {
+          return b.amount - a.amount;
+        }
+        return tempData;
+      });
+    }
+    if (filters.category) {
+      tempData = tempData.filter((item) => item.category === filters.category);
+    }
+    if (filters.type) {
+      tempData = tempData.filter((item) => item.type === filters.type);
+    }
+    return tempData;
+  }, [filters, state.data]);
+
+  const totals = useMemo(() => {
+    const income = state.data
+      .filter((item) => item.type === "income")
+      .reduce((acc, item) => acc + +item.amount, 0);
+    const expanse = state.data
+      .filter((item) => item.type === "expanse")
+      .reduce((acc, item) => acc + +item.amount, 0);
+      const balance = income - expanse;
+    return { income, expanse, balance };
+  }, [state.data]);
 
   return (
-    <transactionsContext.Provider value={{ ...state, handelDelete, fetchData }}>
+    <transactionsContext.Provider value={{ ...state, totals ,handelFilters, handelDelete, fetchData,filterData }}>
       {children}
     </transactionsContext.Provider>
   );
