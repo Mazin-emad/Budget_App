@@ -10,7 +10,7 @@ export const deleteTransactions = async (id) => {
   return data;
 };
 export const updateTransactions = async (id, body) => {
-  const { data } = await axiosApi.put("/transactions/" + id);
+  const { data } = await axiosApi.put("/transactions/" + id, body);
   return data;
 };
 

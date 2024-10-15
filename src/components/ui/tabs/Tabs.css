@@ -2,7 +2,10 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
 }
-
+.tabs {
+  max-width: 100%;
+  overflow: hidden;
+}
 .tabs_titles .tab_title {
   background: var(--gradient-bg-light);
   padding: 1.5rem;

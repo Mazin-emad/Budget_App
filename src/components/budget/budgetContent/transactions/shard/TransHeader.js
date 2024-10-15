@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
 import { categoryContext } from "services/context/budget/categoryContext";
+import { transactionsContext } from "services/context/budget/transactionsContext";
 
 const TransHeader = () => {
   const { data: catData } = useContext(categoryContext);
+  const { handelFilters } = useContext(transactionsContext);
 
   const [inputs, setInputs] = useState({
     keys: "",
@@ -13,12 +15,11 @@ const TransHeader = () => {
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
+    const f = { ...inputs, [name]: value };
 
-    setInputs((d) => {
-      return { ...d, [name]: value };
-    });
+    setInputs(f);
+    handelFilters(f);
   };
-  console.log(inputs);
 
   return (
     <div className="trans_header">

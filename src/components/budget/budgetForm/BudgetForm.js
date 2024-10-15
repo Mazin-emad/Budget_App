@@ -14,12 +14,6 @@ import { categoryContext } from "services/context/budget/categoryContext";
 import { transactionsContext } from "services/context/budget/transactionsContext";
 import "./budgetForm.css";
 
-// "title": "Rent",
-// "amount": 1000,
-// "type": "income",
-// "category": "3",
-// "date": "2021-10-13"
-
 let initialState = {
   title: "",
   amount: "",
@@ -28,16 +22,21 @@ let initialState = {
   date: "",
 };
 
-const BudgetForm = ({ closeModal, defaultData }) => {
+const BudgetForm = ({ closeModel, defaultData }) => {
   if (defaultData) {
     initialState = { ...defaultData };
   }
-
   const [data, setData] = useState(initialState);
   const [validation, setValidation] = useState({
     isValid: false,
     touched: false,
-    data: {}, // title : {isValid , touched , error }
+    data: {
+      // title: { isValid: false, touched: false, error: null },
+      // amount: { isValid: false, touched: false, error: null },
+      // type: { isValid: false, touched: false, error: null },
+      // category: { isValid: false, touched: false, error: null },
+      // date: { isValid: false, touched: false, error: null },
+    },
   });
 
   const [loading, setLoading] = useState(false);
@@ -117,7 +116,6 @@ const BudgetForm = ({ closeModal, defaultData }) => {
   useEffect(() => {
     if (!isMout.current) {
       handleValidation();
-
       isMout.current = true;
     }
   }, [handleValidation]);
@@ -129,6 +127,14 @@ const BudgetForm = ({ closeModal, defaultData }) => {
   }, [defaultData]);
 
   const handleChange = (e) => {
+    // setValidation((d) => {
+    //   const newState = { ...d };
+    //   if (!newState.data[e.target.name]) {
+    //     newState.data[e.target.name] = { isValid: false, touched: false, error: null };
+    //   }
+    //   newState.data[e.target.name].error = null;
+    //   return newState;
+    // });
     setValidation((d) => {
       d.data[e.target.name].error = null;
       return d;
@@ -141,6 +147,7 @@ const BudgetForm = ({ closeModal, defaultData }) => {
       };
     });
   };
+
   const handleBlur = (e) => {
     handleValidation(e.target.name);
   };
@@ -157,14 +164,12 @@ const BudgetForm = ({ closeModal, defaultData }) => {
       }
       fetchData();
       setLoading(false);
-      closeModal();
+      closeModel();
     } catch (error) {
       console.log(error.message);
       setLoading(false);
     }
   };
-
-  // console.log(validation);
 
   return (
     <div className="new-budget">
@@ -271,12 +276,7 @@ const BudgetForm = ({ closeModal, defaultData }) => {
           )}
         </div>
 
-        <Button
-          size="large"
-          block
-          disabled={!validation.isValid || loading}
-          onClick={closeModal}
-        >
+        <Button size="large" block disabled={!validation.isValid || loading}>
           {defaultData ? "Edit" : "Save"}
         </Button>
       </form>
