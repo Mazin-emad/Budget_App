@@ -6,7 +6,6 @@ import { useContext } from "react";
 
 const Hero = () => {
   const { totals } = useContext(transactionsContext);
-  console.log(totals);
   return (
     <div className="hero_budget">
       <div className="hero_budget-bg">

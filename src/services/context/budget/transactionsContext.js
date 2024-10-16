@@ -75,7 +75,6 @@ export const TransactionsProvider = ({ children }) => {
   const handelFilters = (filterData) => {
     setFilters(filterData);
   };
-  console.log(filters);
 
   const filterData = useMemo(() => {
     let tempData = [...state.data];
